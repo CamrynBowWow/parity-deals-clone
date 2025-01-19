@@ -8,6 +8,7 @@ export const env = createEnv({
 	server: {
 		DATABASE_URL: z.string().url(),
 		CLERK_SECRET_KEY: z.string(),
+		CLERK_WEBHOOK_SECRET: z.string(),
 	},
 	experimental__runtimeEnv: process.env, // Hooks up everything for me
 

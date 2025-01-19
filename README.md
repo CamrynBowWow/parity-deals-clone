@@ -1,5 +1,9 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Tutorial
+- Youtuber: Web Dev Simplified
+- URL: https://www.youtube.com/watch?v=pWV-8PW1l2A
+
 ## Getting Started
 
 First, run the development server:
@@ -45,3 +49,4 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - Drizzle
 - t3-oss/env-nextjs
 - zod
+- svix (Used to verify the webhook signature)
