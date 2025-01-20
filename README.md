@@ -50,3 +50,10 @@ Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/bui
 - t3-oss/env-nextjs
 - zod
 - svix (Used to verify the webhook signature)
+
+# Ports
+
+- Using VScode go to the ports tab and then click add port.
+- Go to clerk and add the url of the port to clerk webhooks
+- Make sure port visibility is on public.
+- Might also require you to sign into github before creating a port
