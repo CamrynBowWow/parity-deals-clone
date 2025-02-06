@@ -1,7 +1,3 @@
-// Global cache. Example: Countries there's the same amount of countries for every user and if I change one country I want to refresh my entire cache for all of the countries.
-// User cache. Example: When a user creates a product I don't want to refresh the cache for all the products I only want to refresh the cache for that user's products.
-// Individual cache. Example: If I delete this one product I only want to update the cache for that one product I don't want to update the cache for literally everybody in our entire application.
-
 /* eslint-disable  @typescript-eslint/no-explicit-any */
 
 // Gives tags that allow to revalidate and cache things
