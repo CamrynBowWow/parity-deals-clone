@@ -42,9 +42,20 @@
 
 ### Product Display Grid
 
-- Product is displayed with name, url link, and description[optional]
+- Product is displayed with name, url link, and description (optional)
 - Can edit product
 - Can add to site
 - Can delete product
 - Link to create new product page
 - Link to products page
+
+### Caching 
+
+File for caching can be found in the lib folder file name cache
+
+- Global cache
+    - An example would be that there are the same amount of countries for every user and if one country changes then the entire cache for all countries will refresh.
+- User cache
+    - An example would be when a user creates a product only the users product cache will be refreshed and not refresh the cache for all products.
+- Individual cache
+    - An example would be when one product is deleted the update for the cache would be just for that one product and not updating the cache for everybody in the entire application.
