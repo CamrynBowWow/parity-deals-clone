@@ -16,7 +16,6 @@ async function updateCountryGroups() {
 		}
 	);
 
-	//REMOVE: What does is insert into country group table with all the data above and every single time you find a duplicate it should only update the recommended discount percent. The excluded dot syntax is just getting the value of the recommended discount percentage would of been for the insert and instead use it for the update
 	const { rowCount } = await db
 		.insert(CountryGroupTable)
 		.values(countryGroupInsertData)
