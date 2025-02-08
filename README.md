@@ -16,6 +16,11 @@
 - zod
 - svix (Used to verify the webhook signature)
 
+### Dev dependence packages
+
+- tsx (npm i --save-dev tsx)
+	- Allows the running of TypeScript files without running anything else.
+
 <br>
 
 # Ports/Webhooks(clerk)
@@ -59,3 +64,60 @@ File for caching can be found in the lib folder file name cache
     - An example would be when a user creates a product only the users product cache will be refreshed and not refresh the cache for all products.
 - Individual cache
     - An example would be when one product is deleted the update for the cache would be just for that one product and not updating the cache for everybody in the entire application.
+
+### Country Discounts
+
+What the feature does:
+
+- This allows for each product to have different discount percentages on them based on the country group. 
+- Can enter in a coupon name for each different country group discount.
+
+<br>
+
+- There is a json file in data folder that holds all the country groups discount information. 
+- In folder tasks the file updateCountryGroups reads the json file to update all the country groups information.
+
+<br>
+
+To insert country discounts run the following command in the terminal - **npm run db:updateCountryGroups**
+
+- Make sure to remove the following functions and imports:
+	- revalidateDbCache({ tag: CACHE_TAGS.countries });
+	- import { CACHE_TAGS, revalidateDbCache } from '@/lib/cache';
+
+
+## Functions
+
+- What the code does below:
+    - It inserts into country group table with all the data in **countryGroupInsertDate**.
+    - Every single time there is a duplicate it will only update the recommended discount percent.
+    - The excluded dot syntax is just getting the value of the recommended discount percentage would of been for the insert and instead use it for the update.
+
+<br>
+
+```bash
+async function updateCountryGroups() {
+	const countryGroupInsertData = countriesByDiscount.map(
+		({ name, recommendedDiscountPercentage }) => {
+			return { name, recommendedDiscountPercentage };
+		}
+	);
+
+	
+	const { rowCount } = await db
+		.insert(CountryGroupTable)
+		.values(countryGroupInsertData)
+		.onConflictDoUpdate({
+			target: CountryGroupTable.name,
+			set: {
+				recommendedDiscountPercentage: sql.raw(
+					`excluded.${CountryGroupTable.recommendedDiscountPercentage.name}`
+				),
+			},
+		});
+
+	revalidateDbCache({ tag: CACHE_TAGS.countryGroups });
+
+	return rowCount;
+}
+```

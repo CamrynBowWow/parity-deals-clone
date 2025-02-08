@@ -1,10 +1,11 @@
 import { PageWithBackButton } from '@/app/dashboard/_components/PageWithBackButton';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { getProduct } from '@/server/db/products';
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
+import { getProduct, getProductCountryGroups } from '@/server/db/products';
 import { auth } from '@clerk/nextjs/server';
 import { notFound } from 'next/navigation';
 import { ProductDetailsForm } from '@/app/dashboard/_components/forms/ProductDetailsForm';
+import { CountryDiscountsForm } from '@/app/dashboard/_components/forms/CountryDiscountsForm';
 
 export default async function EditProductPage({
 	params: { productId },
@@ -26,14 +27,14 @@ export default async function EditProductPage({
 			<Tabs defaultValue={tab}>
 				<TabsList className='bg-background/60'>
 					<TabsTrigger value='details'>Details</TabsTrigger>
-					<TabsTrigger value='country'>Country</TabsTrigger>
+					<TabsTrigger value='countries'>Country</TabsTrigger>
 					<TabsTrigger value='customization'>Customization</TabsTrigger>
 				</TabsList>
 				<TabsContent value='details'>
 					<DetailsTab product={product} />
 				</TabsContent>
 				<TabsContent value='countries'>
-					{/* <CountryTab productId={productId} userId={userId} /> */}
+					<CountryTab productId={productId} userId={userId} />
 				</TabsContent>
 				<TabsContent value='customization'>
 					{/* <CustomizationsTab productId={productId} userId={userId} /> */}
@@ -65,27 +66,27 @@ function DetailsTab({
 	);
 }
 
-// async function CountryTab({ productId, userId }: { productId: string; userId: string }) {
-// 	const countryGroups = await getProductCountryGroups({
-// 		productId,
-// 		userId,
-// 	});
+async function CountryTab({ productId, userId }: { productId: string; userId: string }) {
+	const countryGroups = await getProductCountryGroups({
+		productId,
+		userId,
+	});
 
-// 	return (
-// 		<Card>
-// 			<CardHeader>
-// 				<CardTitle className='text-xl'>Country Discounts</CardTitle>
-// 				<CardDescription>
-// 					Leave the discount field blank if you do not want to display deals for any specific parity
-// 					group.
-// 				</CardDescription>
-// 			</CardHeader>
-// 			<CardContent>
-// 				<CountryDiscountsForm productId={productId} countryGroups={countryGroups} />
-// 			</CardContent>
-// 		</Card>
-// 	);
-// }
+	return (
+		<Card>
+			<CardHeader>
+				<CardTitle className='text-xl'>Country Discounts</CardTitle>
+				<CardDescription>
+					Leave the discount field blank if you do not want to display deals for any specific parity
+					group.
+				</CardDescription>
+			</CardHeader>
+			<CardContent>
+				<CountryDiscountsForm productId={productId} countryGroups={countryGroups} />
+			</CardContent>
+		</Card>
+	);
+}
 
 // async function CustomizationsTab({ productId, userId }: { productId: string; userId: string }) {
 // 	const customization = await getProductCustomization({ productId, userId });
