@@ -86,6 +86,24 @@ To insert country discounts run the following command in the terminal - **npm ru
 	- import { CACHE_TAGS, revalidateDbCache } from '@/lib/cache';
 
 
+### Banner Customization
+
+Allow for customization for of product banners and only giving access to subscription tiers that allow it.
+
+<br>
+<br>
+
+What can be customized:
+- Discount Message
+- Background Color
+- Text color
+- Font size
+- Sticky or Not Sticky
+- Banner Container
+- CSS Prefix
+
+<br>
+
 ## Functions
 
 - What the code does below:

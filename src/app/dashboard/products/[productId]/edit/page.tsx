@@ -6,6 +6,8 @@ import { auth } from '@clerk/nextjs/server';
 import { notFound } from 'next/navigation';
 import { ProductDetailsForm } from '@/app/dashboard/_components/forms/ProductDetailsForm';
 import { CountryDiscountsForm } from '@/app/dashboard/_components/forms/CountryDiscountsForm';
+import { canCustomizeBanner, canRemoveBranding } from '@/server/permission';
+import { ProductCustomizationForm } from '@/app/dashboard/_components/forms/ProductCustomizationForm';
 
 export default async function EditProductPage({
 	params: { productId },
@@ -99,11 +101,11 @@ async function CustomizationsTab({ productId, userId }: { productId: string; use
 				<CardTitle className='text-xl'>Banner Customization</CardTitle>
 			</CardHeader>
 			<CardContent>
-				{/* <ProductCustomizationForm
+				<ProductCustomizationForm
 					canRemoveBranding={await canRemoveBranding(userId)}
 					canCustomizeBanner={await canCustomizeBanner(userId)}
 					customization={customization}
-				/> */}
+				/>
 			</CardContent>
 		</Card>
 	);
