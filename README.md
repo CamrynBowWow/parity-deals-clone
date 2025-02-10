@@ -14,6 +14,7 @@
 - Drizzle
 - t3-oss/env-nextjs
 - zod
+- date-fns
 - svix (Used to verify the webhook signature)
 
 ### Dev dependence packages
@@ -113,6 +114,11 @@ All the restricts on based on the tier subscription and can be upgraded anytime.
 
 
 <br>
+
+### Subscription Page
+
+- Tracks the number of visits to pricing page monthly
+- Tracks the amount of products you have created
 
 ## Functions
 
