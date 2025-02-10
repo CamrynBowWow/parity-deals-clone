@@ -104,6 +104,16 @@ What can be customized:
 
 <br>
 
+### User Permissions
+
+All the restricts on based on the tier subscription and can be upgraded anytime.
+
+- User will be restricted on how many products they can make.
+- User will be restricted on how they can customize their products banner.
+
+
+<br>
+
 ## Functions
 
 - What the code does below:

@@ -15,7 +15,7 @@ import {
 	updateProductCustomization as updateProductCustomizationDb,
 } from '@/server/db/products';
 import { redirect } from 'next/navigation';
-import { canCustomizeBanner } from '../permission';
+import { canCreateProduct, canCustomizeBanner } from '../permission';
 
 // Manually add a return type of Promise
 export async function createProduct(
@@ -24,7 +24,9 @@ export async function createProduct(
 	const { userId } = await auth();
 	const { success, data } = productDetailsSchema.safeParse(unsafeData);
 
-	if (!success || userId == null) {
+	const canCreate = await canCreateProduct(userId);
+
+	if (!success || userId == null || !canCreate) {
 		return { error: true, message: 'There was an error creating your product' };
 	}
 

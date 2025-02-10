@@ -21,6 +21,7 @@ import { updateProductCustomization } from '@/server/actions/products';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
+import { NoPermissionCard } from '@/components/NoPermissionCard';
 
 export function ProductCustomizationForm({
 	customization,
@@ -77,6 +78,12 @@ export function ProductCustomizationForm({
 					canRemoveBranding={canRemoveBranding}
 				/>
 			</div>
+
+			{!canCustomizeBanner && (
+				<div className='mt-8'>
+					<NoPermissionCard />
+				</div>
+			)}
 
 			<Form {...form}>
 				<form onSubmit={form.handleSubmit(onSubmit)} className='flex gap-6 flex-col mt-8'>
