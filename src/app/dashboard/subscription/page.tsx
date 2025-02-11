@@ -11,6 +11,11 @@ import { Progress } from '@/components/ui/progress';
 import { subscriptionTiers, subscriptionTiersInOrder, TierNames } from '@/data/subscriptionTiers';
 import { formatCompactNumber } from '@/lib/formatter';
 import { cn } from '@/lib/utils';
+import {
+	createCancelSession,
+	createCheckoutSession,
+	createCustomerPortalSession,
+} from '@/server/actions/stripe';
 import { getProductCount } from '@/server/db/products';
 import { getProductViewCount } from '@/server/db/productViews';
 import { getUserSubscriptionTier } from '@/server/db/subscription';
@@ -69,6 +74,7 @@ export default async function SubscriptionPage() {
 							</CardDescription>
 						</CardHeader>
 						<CardContent>
+							{/* Won't work also because of Promise Issue */}
 							<form action={createCustomerPortalSession}>
 								<Button variant='accent' className='text-lg rounded-lg' size='lg'>
 									Manage Subscription
@@ -110,6 +116,7 @@ function PricingCard({
 				</CardDescription>
 			</CardHeader>
 			<CardContent>
+				{/* This action will need to be fixed. Promise Issue */}
 				<form
 					action={name === 'Free' ? createCancelSession : createCheckoutSession.bind(null, name)}
 				>

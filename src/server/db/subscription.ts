@@ -2,6 +2,7 @@ import { subscriptionTiers } from '@/data/subscriptionTiers';
 import { db } from '@/drizzle/db';
 import { UserSubscriptionTable } from '@/drizzle/schema';
 import { CACHE_TAGS, dbCache, getUserTag, revalidateDbCache } from '@/lib/cache';
+import { SQL } from 'drizzle-orm';
 
 //$inferInsert: Essentially saying that this data is whatever we can insert into our particular table
 export async function createUserSubscription(data: typeof UserSubscriptionTable.$inferInsert) {
@@ -23,6 +24,28 @@ export async function createUserSubscription(data: typeof UserSubscriptionTable.
 	}
 
 	return newSubscription;
+}
+
+export async function updateUserSubscription(
+	where: SQL,
+	data: Partial<typeof UserSubscriptionTable.$inferInsert>
+) {
+	const [updatedSubscription] = await db
+		.update(UserSubscriptionTable)
+		.set(data)
+		.where(where)
+		.returning({
+			id: UserSubscriptionTable.id,
+			userId: UserSubscriptionTable.clerkUserId,
+		});
+
+	if (updatedSubscription != null) {
+		revalidateDbCache({
+			tag: CACHE_TAGS.subscription,
+			userId: updatedSubscription.userId,
+			id: updatedSubscription.id,
+		});
+	}
 }
 
 export function getUserSubscription(userId: string) {

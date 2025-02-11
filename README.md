@@ -120,6 +120,48 @@ All the restricts on based on the tier subscription and can be upgraded anytime.
 - Tracks the number of visits to pricing page monthly
 - Tracks the amount of products you have created
 
+<br>
+
+## Stripe 
+
+To create the different prices:
+- Go to **Product catalog** on Stripe
+- Then click on **Create product** button. Then fill in the following fields:
+	- Name
+	- Make sure **Recurring** is selected
+	- Fill in amount
+- Then click on each one made and then click on the price of the product (under Price).
+- Then copy the ID of the price for the product
+- Can manage subscription if not on free plan
+
+### Stripe getting webhook secret key
+
+- Search for Webhooks on stripe
+- Then Click **Create an event destination** button
+- Select the **Test in a local environment** tab
+- Add the stripe listen to your package.json file:
+	- "stripe:webhooks": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
+- Then type in *npm run stripe:webhooks* into the terminal
+
+OR
+
+- Make sure to download stripe.exe from [Stripe Github](https://github.com/stripe/stripe-cli/releases/tag/v1.24.0)
+- Add file Path to environment variables on system.
+- Then open cmd in file Path the stripe.exe is added in
+- Type in **stripe login**
+- Then run *stripe listen --forward-to localhost:3000/api/webhooks/stripe* that command
+- Put webhook secret key in .env
+
+<br>
+
+The key expires in 90 days
+
+<br>
+
+When testing the purchasing process make sure the card information is visa and 4242 4242 4242 4242
+
+<br>
+
 ## Functions
 
 - What the code does below:
