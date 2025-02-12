@@ -5,7 +5,7 @@ import {
 	productCountryDiscountsSchema,
 	productCustomizationSchema,
 	productDetailsSchema,
-} from '../../../schemas/products';
+} from '@/schemas/products';
 import { auth } from '@clerk/nextjs/server';
 import {
 	createProduct as createProductDb,

@@ -3,7 +3,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod';
-import { productCountryDiscountsSchema } from '../../../../../schemas/products';
+import { productCountryDiscountsSchema } from '@/schemas/products';
 import {
 	Form,
 	FormControl,
