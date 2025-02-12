@@ -122,6 +122,12 @@ All the restricts on based on the tier subscription and can be upgraded anytime.
 
 <br>
 
+### Banner
+
+The Banner API is used to set a banner on any product or site that matches the url. When the url is visited the *Monthly Usage* increases.
+
+<br>
+
 ## Stripe 
 
 To create the different prices:
