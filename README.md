@@ -21,6 +21,8 @@
 
 - tsx (npm i --save-dev tsx)
 	- Allows the running of TypeScript files without running anything else.
+- @date-fns/tz
+	- Part of date-fns but needs to be installed separately "npm i @date/fns/tz"
 
 <br>
 
@@ -165,6 +167,22 @@ The key expires in 90 days
 <br>
 
 When testing the purchasing process make sure the card information is visa and 4242 4242 4242 4242
+
+<br>
+
+### Analytics
+
+- There is a drop-down menu to select the different ranges
+	- Last 7 Days
+	- Last 30 Days
+	- Last 365 Days
+- Visitors Per Day
+- Visitors Per PPP Group
+- Visitors Per Country
+- There is a drop-down menu for each different Product the user has or just all products
+- There is a drop-down menu for different timezones
+	- UTC
+	- Users current timezone
 
 <br>
 
